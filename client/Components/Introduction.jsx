@@ -9,6 +9,8 @@ import FollowProjectModal from './modals/followprojectmodal.jsx';
 import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './styles/introduction.css';
+import './styles/Fonts/MaisonNeue/fonts.css';
 
 class Introduction extends React.Component {
   constructor(props){
@@ -48,7 +50,8 @@ class Introduction extends React.Component {
 
   getProject(projectid = window.location.pathname.slice(1)) {
     //Set to 1 for now, but project id can be passed in to fetch specific project
-    axios.get(`http://127.0.0.1:3000/projects/${projectid}`)
+    console.log(projectid);
+    axios.get(`http://127.0.0.1:3001/${projectid}`)
     .then(project => {
       this.setState({
         project: project.data[0],
@@ -66,7 +69,6 @@ class Introduction extends React.Component {
     })
   }
 
-//Lines 69 through 80 are the click handlers to set corresponding modal display to true
   ownerClicked() {
     this.setState({displayOwner: !this.state.displayOwner});
   }
@@ -80,7 +82,6 @@ class Introduction extends React.Component {
     this.setState({displayFollow: !this.state.displayFollow});
   }
 
-//Lines 94 through 105 will render the corresponding modal if its state is set to true.
   render() {
     return (
       <div>
